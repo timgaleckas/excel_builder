@@ -3,7 +3,7 @@
 rbenv shell jruby-1.6.5
 gem install excel_builder
 cd $(gem which excel_builder | xargs dirname)/../ext
-bundle --version || gem intall bundler
+bundle --version || gem install bundler
 bundle install
 ruby app.rb
 
@@ -15,8 +15,9 @@ require 'rubygems'
 require 'excel_builder'
 ExcelBuilder::Connector.site = 'http://localhost:4567'
 File.open('test.xlsx', 'w') do |f|
-  f.write ExcelBuilder::Connector.generate_xlsx('text.xlsx') do |workbook|
-    sheet = workbook.worksheets['hello'];
+  file_contents = ExcelBuilder::Connector.generate_xlsx('text.xlsx') do |workbook|
+    sheet = workbook.worksheets['hello']
     sheet.rows[0][0].value = 4.0
   end
+  f.write file_contents
 end
