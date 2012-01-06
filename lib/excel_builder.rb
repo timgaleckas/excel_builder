@@ -24,7 +24,7 @@ module ExcelBuilder
     end
     def self.generate_xlsx(filename, &block)
       cr = CommandRecorder.record &block
-      RestClient.post self.site + filename, :invocation_json => cr.invocation_json
+      RestClient.post self.site + '/' + filename, :invocation_json => cr.invocation_json
     end
   end
 end
