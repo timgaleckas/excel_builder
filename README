@@ -8,6 +8,8 @@ bundle install
 ruby app.rb
 
 #to use the client
+
+rbenv shell 1.9.2-p290
 gem install excel_builder
 
 irb
